@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iStore Uzbekistan — Rasmiy iPhone va Apple Texnikasi Do'koni</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                    },
+                    colors: {
+                        apple: {
+                            bg: '#F5F5F7',
+                            card: '#FFFFFF',
+                            dark: '#000000',
+                            charcoal: '#1D1D1F',
+                            gray: '#6E6E73',
+                            lightGray: '#E8E8ED',
+                            blue: '#0071E3',
+                            blueHover: '#0077ED',
+                            titanium: '#8E8D8A',
+                            desert: '#C2A88F',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --apple-bg: #F5F5F7;
+            --apple-dark: #000000;
+            --apple-text: #1D1D1F;
+            --apple-muted: #6E6E73;
+            --apple-blue: #0071E3;
+            --glass-bg: rgba(255, 255, 255, 0.78);
+            --glass-dark: rgba(18, 18, 20, 0.85);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--apple-bg);
+            color: var(--apple-text);
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphic Sticky Navbar */
+        .apple-glass {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        /* Hero Titanium Mesh Gradient */
+        .hero-titanium {
+            background: radial-gradient(circle at 75% 30%, rgba(194, 168, 143, 0.22) 0%, rgba(28, 28, 30, 0.9) 45%, #000000 100%);
+        }
+
+        .text-gradient-titanium {
+            background: linear-gradient(135deg, #FFFFFF 0%, #E2D1C3 50%, #A69586 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Product Card Hover Elevation */
+        .product-card {
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.06);
+        }
+        .product-image {
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Color Swatch Ring */
+        .swatch-btn {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .swatch-btn.active {
+            transform: scale(1.15);
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0071E3;
+        }
+
+        /* Custom Range Slider */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            background: #D2D2D7;
+            border-radius: 999px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #0071E3;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 113, 227, 0.4);
+            border: 3px solid #FFFFFF;
+            transition: transform 0.15s ease;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.12);
+        }
+
+        /* Slide-over & Modal Transitions */
+        .drawer-backdrop {
+            transition: opacity 0.3s ease;
+        }
+        .drawer-panel {
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Hide scrollbar for horizontal category pills on mobile */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Toast Animation */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .toast-enter {
+            animation: slideInUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-apple-blue selection:text-white">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-black text-white text-xs py-2 px-4 text-center font-medium tracking-wide">
+        <span class="text-amber-300 font-semibold">YANGILIK:</span> Barcha iPhone 16 seriyalariga rasmiy UzIMEI ro'yxati + 1 yillik kafolat va Toshkent, Qarshi, Samarqand bo'ylab bepul yetkazib berish!
+    </div>
+
+    <!-- Sticky Glassmorphic Apple Navbar -->
+    <header class="sticky top-0 z-40 apple-glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 gap-3">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-2 text-xl font-bold tracking-tight text-apple-charcoal shrink-0">
+                    <i class="fa-brands fa-apple text-2xl"></i>
+                    <span>iStore <span class="text-xs font-semibold uppercase tracking-widest text-apple-blue ml-0.5">UZ</span></span>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium text-apple-charcoal/85">
+                    <a href="#catalog" onclick="filterByCategory('all')" class="hover:text-apple-blue transition">Modellar</a>
+                    <a href="#catalog" onclick="filterByCategory('accessories')" class="hover:text-apple-blue transition">Aksessuarlar</a>
+                    <a href="#trade-in" class="hover:text-apple-blue transition">Trade-In</a>
+                    <a href="#installment" class="hover:text-apple-blue transition">Muddatli to'lov</a>
+                    <a href="#compare" class="hover:text-apple-blue transition">Taqqoslash</a>
+                    <a href="#footer" class="hover:text-apple-blue transition">Aloqa</a>
+                </nav>
+
+                <!-- Search & Action Icons -->
+                <div class="flex items-center gap-2 sm:gap-3 flex-1 max-w-xs lg:max-w-sm justify-end">
+                    <!-- Live Search Input -->
+                    <div class="relative w-full max-w-[200px] sm:max-w-[230px]">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-xs text-apple-gray"></i>
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="iPhone 16 Pro, AirPods..."
+                            class="w-full bg-black/5 hover:bg-black/10 focus:bg-white text-sm rounded-full pl-8 pr-3 py-1.5 outline-none border border-transparent focus:border-apple-blue transition"
+                        >
+                    </div>
+
+                    <!-- Currency Toggle Pill -->
+                    <button
+                        id="currencyToggleBtn"
+                        onclick="toggleCurrencyDisplay()"
+                        title="Valyuta ko'rinishini almashtirish"
+                        class="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-black/5 hover:bg-black/10 text-xs font-semibold text-apple-charcoal transition shrink-0"
+                    >
+                        <span id="currencyLabel">USD / UZS</span>
+                    </button>
+
+                    <!-- Wishlist Button -->
+                    <button
+                        onclick="toggleWishlistDrawer(true)"
+                        aria-label="Sevimlilar"
+                        class="relative p-2.5 rounded-full hover:bg-black/5 text-apple-charcoal transition shrink-0"
+                    >
+                        <i class="fa-regular fa-heart text-lg"></i>
+                        <span id="wishlistBadge" class="hidden absolute -top-0.5 -right-0.5 bg-rose-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                    </button>
+
+                    <!-- Shopping Cart Button -->
+                    <button
+                        onclick="toggleCartDrawer(true)"
+                        aria-label="Savat"
+                        class="relative p-2.5 rounded-full hover:bg-black/5 text-apple-charcoal transition shrink-0"
+                    >
+                        <i class="fa-solid fa-bag-shopping text-lg"></i>
+                        <span id="cartBadge" class="absolute -top-0.5 -right-0.5 bg-apple-blue text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button
+                        onclick="toggleMobileMenu()"
+                        aria-label="Menyu"
+                        class="lg:hidden p-2 rounded-full hover:bg-black/5 text-apple-charcoal"
+                    >
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Dropdown Menu -->
+            <div id="mobileMenu" class="hidden lg:hidden pb-4 pt-2 border-t border-black/10">
+                <div class="flex flex-col space-y-2 text-sm font-medium">
+                    <a href="#catalog" onclick="filterByCategory('all'); toggleMobileMenu()" class="px-3 py-2 rounded-xl hover:bg-black/5">Modellar</a>
+                    <a href="#catalog" onclick="filterByCategory('accessories'); toggleMobileMenu()" class="px-3 py-2 rounded-xl hover:bg-black/5">Aksessuarlar</a>
+                    <a href="#trade-in" onclick="toggleMobileMenu()" class="px-3 py-2 rounded-xl hover:bg-black/5">Trade-In Kalkulyator</a>
+                    <a href="#installment" onclick="toggleMobileMenu()" class="px-3 py-2 rounded-xl hover:bg-black/5">Muddatli to'lov</a>
+                    <a href="#compare" onclick="toggleMobileMenu()" class="px-3 py-2 rounded-xl hover:bg-black/5">Modellarni taqqoslash</a>
+                    <a href="#footer" onclick="toggleMobileMenu()" class="px-3 py-2 rounded-xl hover:bg-black/5">Aloqa va Manzil</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section: iPhone 16 Pro Max -->
+    <section class="hero-titanium text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-24">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <!-- Left Copy -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left z-10">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-semibold tracking-wider uppercase text-amber-200">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                        Yangi Flagman • Rasmiy Kafolat
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08]">
+                        iPhone 16 Pro Max.<br>
+                        <span class="text-gradient-titanium">Titan kuchi.</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Yangi avlod <strong>A18 Pro</strong> protsessori, 48MP Fusion kamera tizimi, Camera Control tugmasi va o'ta mustahkam 5-darajali titan korpus. Endi O'zbekistonda rasmiy kafolat bilan.
+                    </p>
+
+                    <!-- Key Specs Pills -->
+                    <div class="grid grid-cols-3 gap-3 max-w-md mx-auto lg:mx-0 pt-1">
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
+                            <div class="text-sm sm:text-base font-bold text-white">A18 Pro</div>
+                            <div class="text-[11px] text-gray-400">3nm Chip</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
+                            <div class="text-sm sm:text-base font-bold text-white">48MP Pro</div>
+                            <div class="text-[11px] text-gray-400">4K 120fps Dolby</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
+                            <div class="text-sm sm:text-base font-bold text-white">33 soat</div>
+                            <div class="text-[11px] text-gray-400">Video ijro</div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
+                        <button
+                            onclick="openQuickView(1)"
+                            class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white font-semibold text-sm sm:text-base transition shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2"
+                        >
+                            <span>Sotib olish — $1,299 dan</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                        <a
+                            href="#installment"
+                            class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-sm sm:text-base transition text-center"
+                        >
+                            Oyiga $65 dan (Bo'lib to'lash)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right High-Res Product Visual -->
+                <div class="lg:col-span-6 relative flex justify-center">
+                    <div class="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-zinc-900">
+                        <img
+                            src="https://avatars.mds.yandex.net/i?id=a19f36028a22a0cca90cbc792e51a95b4ad4741b-9831149-images-thumbs&n=13"
+                            alt="iPhone 16 Pro Max Desert Titanium"
+                            onerror="this.src='https://placehold.co/800x600/1c1c1e/ffffff?text=iPhone+16+Pro+Max'"
+                            class="w-full h-[340px] sm:h-[430px] object-cover object-center"
+                        >
+                        <!-- Floating Glass Card -->
+                        <div class="absolute bottom-4 left-4 right-4 bg-black/65 backdrop-blur-md border border-white/15 rounded-2xl p-4 flex items-center justify-between">
+                            <div>
+                                <div class="text-xs text-amber-300 font-semibold">Sotuvda mavjud</div>
+                                <div class="text-sm sm:text-base font-bold text-white">Desert Titanium • 256GB / 512GB / 1TB</div>
+                            </div>
+                            <button
+                                onclick="quickAddDefault(1)"
+                                class="px-4 py-2 rounded-full bg-white text-black hover:bg-gray-100 text-xs font-bold transition shrink-0"
+                            >
+                                + Savatga
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust & Benefits Strip -->
+    <section class="bg-white border-b border-black/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <div class="flex items-center gap-3 p-2">
+                    <div class="w-10 h-10 rounded-2xl bg-blue-50 text-apple-blue flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-shield-halved text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-apple-charcoal">1 Yil Rasmiy Kafolat</h3>
+                        <p class="text-xs text-apple-gray">Apple rasmiy servis markazi</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 p-2">
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-sim-card text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-apple-charcoal">UzIMEI Ro'yxatdan O'tgan</h3>
+                        <p class="text-xs text-apple-gray">100% qonuniy va kafolatlangan</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 p-2">
+                    <div class="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-truck-fast text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-apple-charcoal">Tezkor Yetkazib Berish</h3>
+                        <p class="text-xs text-apple-gray">Toshkent 2 soat, viloyatlar 24 soat</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 p-2">
+                    <div class="w-10 h-10 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-rotate text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-apple-charcoal">Trade-In Xizmati</h3>
+                        <p class="text-xs text-apple-gray">Eski iPhone'ni yangisiga almashtiring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Product Catalog Section -->
+    <main id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <!-- Section Header + Controls -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-apple-blue">Katalog</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-apple-charcoal mt-1">
+                    O'zingizga mos Apple qurilmasini tanlang
+                </h2>
+            </div>
+
+            <!-- Sort Dropdown -->
+            <div class="flex items-center gap-3">
+                <label for="sortSelect" class="text-xs font-medium text-apple-gray whitespace-nowrap">Saralash:</label>
+                <select
+                    id="sortSelect"
+                    onchange="renderProducts()"
+                    class="bg-white border border-black/10 rounded-full px-4 py-2 text-sm font-medium text-apple-charcoal outline-none focus:border-apple-blue cursor-pointer shadow-sm"
+                >
+                    <option value="popular">Ommabop modellar</option>
+                    <option value="price-asc">Narx: arzondan qimmatga</option>
+                    <option value="price-desc">Narx: qimmatdan arzonga</option>
+                    <option value="newest">Eng yangilari</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-6" id="categoryTabs">
+            <button data-cat="all" onclick="filterByCategory('all')" class="cat-tab active px-5 py-2.5 rounded-full text-sm font-semibold bg-apple-charcoal text-white transition whitespace-nowrap">
+                Hammasi (12)
+            </button>
+            <button data-cat="iphone16" onclick="filterByCategory('iphone16')" class="cat-tab px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-apple-charcoal hover:bg-black/5 border border-black/10 transition whitespace-nowrap">
+                iPhone 16 seriyasi
+            </button>
+            <button data-cat="iphone15" onclick="filterByCategory('iphone15')" class="cat-tab px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-apple-charcoal hover:bg-black/5 border border-black/10 transition whitespace-nowrap">
+                iPhone 15 seriyasi
+            </button>
+            <button data-cat="iphone14" onclick="filterByCategory('iphone14')" class="cat-tab px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-apple-charcoal hover:bg-black/5 border border-black/10 transition whitespace-nowrap">
+                iPhone 14 seriyasi
+            </button>
+            <button data-cat="accessories" onclick="filterByCategory('accessories')" class="cat-tab px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-apple-charcoal hover:bg-black/5 border border-black/10 transition whitespace-nowrap">
+                Aksessuarlar
+            </button>
+        </div>
+
+        <!-- Dynamic Product Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Rendered by JavaScript -->
+        </div>
+
+        <!-- Empty Search State -->
+        <div id="emptyState" class="hidden text-center py-16 bg-white rounded-3xl border border-black/5">
+            <div class="w-16 h-16 rounded-full bg-apple-bg mx-auto flex items-center justify-center text-2xl text-apple-gray mb-4">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <h3 class="text-lg font-bold text-apple-charcoal">Hech qanday mahsulot topilmadi</h3>
+            <p class="text-sm text-apple-gray mt-1 mb-5">Boshqa kalit so'z bilan qidirib ko'ring yoki barcha kategoriyalarni oching.</p>
+            <button onclick="resetFilters()" class="px-6 py-2.5 rounded-full bg-apple-blue text-white text-sm font-semibold hover:bg-apple-blueHover transition">
+                Filtrlarni tozalash
+            </button>
+        </div>
+    </main>
+
+    <!-- Interactive Installment Calculator & Trade-In Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            <!-- 1. Muddatli To'lov Kalkulyatori -->
+            <div id="installment" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-black/5 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-4">
+                        <span class="px-3 py-1 rounded-full bg-blue-50 text-apple-blue text-xs font-bold uppercase tracking-wider">
+                            Halol Nasiya / Bo'lib to'lash
+                        </span>
+                        <span class="text-xs text-apple-gray font-medium">Pasport orqali 15 daqiqada</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-apple-charcoal">Muddatli to'lov kalkulyatori</h2>
+                    <p class="text-sm text-apple-gray mt-1 mb-6">O'zingizga qulay boshlang'ich to'lov va muddatni tanlang.</p>
+
+                    <!-- Model Select -->
+                    <div class="space-y-4">
+                        <div>
+                            <label for="calcModelSelect" class="block text-xs font-semibold text-apple-charcoal uppercase tracking-wider mb-1.5">Qurilmani tanlang</label>
+                            <select id="calcModelSelect" onchange="updateInstallmentCalc()" class="w-full bg-apple-bg border border-black/10 rounded-2xl px-4 py-3 text-sm font-semibold text-apple-charcoal outline-none focus:border-apple-blue">
+                                <!-- Populated via JS -->
+                            </select>
+                        </div>
+
+                        <!-- Down Payment Slider -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-2">
+                                <span class="text-apple-gray">Boshlang'ich to'lov (<span id="downPaymentPercentLabel" class="text-apple-blue font-bold">20%</span>)</span>
+                                <span id="downPaymentAmountLabel" class="text-apple-charcoal font-bold">$260 (3,328,000 so'm)</span>
+                            </div>
+                            <input type="range" id="downPaymentRange" min="0" max="50" step="5" value="20" oninput="updateInstallmentCalc()" class="w-full">
+                            <div class="flex justify-between text-[11px] text-apple-gray mt-1">
+                                <span>0% (Boshlang'ichsiz)</span>
+                                <span>25%</span>
+                                <span>50%</span>
+                            </div>
+                        </div>
+
+                        <!-- Months Selector Pills -->
+                        <div>
+                            <label class="block text-xs font-semibold text-apple-charcoal uppercase tracking-wider mb-2">To'lov muddati</label>
+                            <div class="grid grid-cols-4 gap-2" id="installmentMonthsGroup">
+                                <button type="button" onclick="setInstallmentMonths(3)" data-months="3" class="month-btn py-2.5 rounded-xl text-sm font-bold border border-black/10 bg-apple-bg text-apple-charcoal transition">3 oy</button>
+                                <button type="button" onclick="setInstallmentMonths(6)" data-months="6" class="month-btn py-2.5 rounded-xl text-sm font-bold border border-black/10 bg-apple-bg text-apple-charcoal transition">6 oy</button>
+                                <button type="button" onclick="setInstallmentMonths(12)" data-months="12" class="month-btn active py-2.5 rounded-xl text-sm font-bold border border-apple-blue bg-apple-blue text-white transition">12 oy</button>
+                                <button type="button" onclick="setInstallmentMonths(24)" data-months="24" class="month-btn py-2.5 rounded-xl text-sm font-bold border border-black/10 bg-apple-bg text-apple-charcoal transition">24 oy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Box -->
+                <div class="mt-7 p-5 rounded-2xl bg-apple-bg border border-black/5">
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div>
+                            <div class="text-xs text-apple-gray font-medium">Oylik to'lov miqdori:</div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-apple-blue mt-0.5" id="monthlyUsdResult">$98 / oy</div>
+                            <div class="text-xs font-semibold text-apple-charcoal mt-0.5" id="monthlyUzsResult">1,254,400 so'm / oy</div>
+                        </div>
+                        <button onclick="orderInstallmentProduct()" class="px-5 py-3 rounded-full bg-apple-charcoal hover:bg-black text-white text-sm font-semibold transition">
+                            Rasmiylashtirish
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Trade-In Baholash Kalkulyatori -->
+            <div id="trade-in" class="bg-zinc-900 text-white rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-4">
+                        <span class="px-3 py-1 rounded-full bg-amber-400/15 text-amber-300 text-xs font-bold uppercase tracking-wider">
+                            Apple Trade-In
+                        </span>
+                        <span class="text-xs text-gray-400">Eski telefoningizni foydali topshiring</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold">Eski iPhone'ingiz qancha turadi?</h2>
+                    <p class="text-sm text-gray-400 mt-1 mb-6">Eski qurilmangizni topshiring va yangi iPhone narxidan bir zumda chegirma oling.</p>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label for="tradeInModel" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Eski modelingiz</label>
+                            <select id="tradeInModel" onchange="updateTradeInCalc()" class="w-full bg-white/10 border border-white/15 rounded-2xl px-4 py-3 text-sm font-semibold text-white outline-none focus:border-amber-400">
+                                <option value="650" class="text-black">iPhone 15 Pro Max</option>
+                                <option value="560" class="text-black">iPhone 15 Pro</option>
+                                <option value="440" class="text-black">iPhone 15</option>
+                                <option value="470" class="text-black" selected>iPhone 14 Pro Max</option>
+                                <option value="400" class="text-black">iPhone 14 Pro</option>
+                                <option value="310" class="text-black">iPhone 14</option>
+                                <option value="340" class="text-black">iPhone 13 Pro Max</option>
+                                <option value="250" class="text-black">iPhone 13</option>
+                                <option value="180" class="text-black">iPhone 12</option>
+                                <option value="120" class="text-black">iPhone 11</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Qurilma holati</label>
+                            <div class="grid grid-cols-3 gap-2.5" id="tradeInConditionGroup">
+                                <button type="button" onclick="setTradeInCondition(1.0, this)" class="cond-btn active p-3 rounded-2xl border border-amber-400 bg-amber-400/15 text-left transition">
+                                    <div class="text-sm font-bold text-white">Ideal</div>
+                                    <div class="text-[11px] text-gray-300 mt-0.5">Qirilmagan, batareya 88%+</div>
+                                </button>
+                                <button type="button" onclick="setTradeInCondition(0.82, this)" class="cond-btn p-3 rounded-2xl border border-white/15 bg-white/5 text-left transition">
+                                    <div class="text-sm font-bold text-white">Yaxshi</div>
+                                    <div class="text-[11px] text-gray-400 mt-0.5">Kichik izlar bor, ochilmagan</div>
+                                </button>
+                                <button type="button" onclick="setTradeInCondition(0.65, this)" class="cond-btn p-3 rounded-2xl border border-white/15 bg-white/5 text-left transition">
+                                    <div class="text-sm font-bold text-white">O'rtacha</div>
+                                    <div class="text-[11px] text-gray-400 mt-0.5">Batareya 80% dan past</div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trade-in Valuation Result -->
+                <div class="mt-7 p-5 rounded-2xl bg-white/5 border border-white/10">
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div>
+                            <div class="text-xs text-gray-400">Taxminiy Trade-In chegirmasi:</div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-amber-300 mt-0.5" id="tradeInUsdResult">$470</div>
+                            <div class="text-xs text-gray-300 mt-0.5" id="tradeInUzsResult">6,016,000 so'm chegirma</div>
+                        </div>
+                        <button onclick="applyTradeInPromo()" class="px-5 py-3 rounded-full bg-amber-400 hover:bg-amber-300 text-black text-sm font-bold transition">
+                            Chegirmani qo'llash
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Model Comparison Section -->
+    <section id="compare" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-black/5">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <span class="text-xs font-bold uppercase tracking-widest text-apple-blue">Taqqoslash</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-apple-charcoal mt-1">Qaysi iPhone sizga mos?</h2>
+                <p class="text-sm text-apple-gray mt-1">Ikkita modelni tanlang va texnik ko'rsatkichlarini yonma-yon solishtiring.</p>
+            </div>
+
+            <!-- Selectors -->
+            <div class="grid grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
+                <div>
+                    <label for="compareSelect1" class="block text-xs font-semibold text-apple-gray mb-1">1-model</label>
+                    <select id="compareSelect1" onchange="renderComparison()" class="w-full bg-apple-bg border border-black/10 rounded-2xl px-3.5 py-2.5 text-sm font-bold text-apple-charcoal outline-none focus:border-apple-blue"></select>
+                </div>
+                <div>
+                    <label for="compareSelect2" class="block text-xs font-semibold text-apple-gray mb-1">2-model</label>
+                    <select id="compareSelect2" onchange="renderComparison()" class="w-full bg-apple-bg border border-black/10 rounded-2xl px-3.5 py-2.5 text-sm font-bold text-apple-charcoal outline-none focus:border-apple-blue"></select>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div id="comparisonOutput" class="max-w-3xl mx-auto">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sleek Apple Footer -->
+    <footer id="footer" class="bg-apple-charcoal text-gray-300 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/10">
+                <!-- Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2 text-2xl font-bold text-white">
+                        <i class="fa-brands fa-apple"></i>
+                        <span>iStore Uzbekistan</span>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        O'zbekistondagi ishonchli Apple texnikasi do'koni. Faqat original, yangi ochilmagan va rasmiy kafolatga ega mahsulotlar.
+                    </p>
+                    <div class="flex items-center gap-3 pt-1">
+                        <a href="#footer" aria-label="Telegram" class="w-9 h-9 rounded-full bg-white/10 hover:bg-apple-blue text-white flex items-center justify-center transition">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                        <a href="#footer" aria-label="Instagram" class="w-9 h-9 rounded-full bg-white/10 hover:bg-pink-600 text-white flex items-center justify-center transition">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#footer" aria-label="YouTube" class="w-9 h-9 rounded-full bg-white/10 hover:bg-red-600 text-white flex items-center justify-center transition">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Filiallar -->
+                <div>
+                    <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Filiallarimiz</h3>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li>
+                            <strong class="text-white block">Toshkent (Bosh ofis):</strong>
+                            Amir Temur shoh ko'chasi, 15-uy (Malika savdo majmuasi yonida)
+                        </li>
+                        <li>
+                            <strong class="text-white block">Qarshi filiali:</strong>
+                            Islom Karimov ko'chasi, 42-uy (Markaziy univermag ro'parasi)
+                        </li>
+                        <li>
+                            <strong class="text-white block">Samarqand filiali:</strong>
+                            Mirzo Ulug'bek ko'chasi, 78-uy
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mijozlar uchun -->
+                <div>
+                    <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Xizmatlar</h3>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><a href="#catalog" class="hover:text-white transition">iPhone 16 seriyasi</a></li>
+                        <li><a href="#installment" class="hover:text-white transition">Muddatli to'lov shartlari</a></li>
+                        <li><a href="#trade-in" class="hover:text-white transition">Trade-In almashtirish</a></li>
+                        <li><a href="#compare" class="hover:text-white transition">Modellarni taqqoslash</a></li>
+                        <li><span class="text-gray-400">Rasmiy kafolat va servis</span></li>
+                    </ul>
+                </div>
+
+                <!-- Aloqa & Ish vaqti -->
+                <div>
+                    <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Aloqa markazi</h3>
+                    <div class="space-y-3 text-sm">
+                        <a href="tel:+998712007700" class="block text-xl font-extrabold text-white hover:text-apple-blue transition">
+                            +998 (71) 200-77-00
+                        </a>
+                        <p class="text-gray-400">Har kuni: <span class="text-white font-medium">09:00 — 22:00</span> (Dam olish kunlarisiz)</p>
+                        <div class="pt-2">
+                            <span class="text-xs text-gray-400 block mb-2">To'lov tizimlari:</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded bg-white/10 text-xs font-bold text-cyan-300">Click</span>
+                                <span class="px-2.5 py-1 rounded bg-white/10 text-xs font-bold text-teal-300">Payme</span>
+                                <span class="px-2.5 py-1 rounded bg-white/10 text-xs font-bold text-purple-300">Uzum Nasiya</span>
+                                <span class="px-2.5 py-1 rounded bg-white/10 text-xs font-bold text-amber-300">Naqd / Karta</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-3">
+                <p>© 2026 iStore Uzbekistan. Barcha huquqlar himoyalangan.</p>
+                <p>1 USD = 12,800 UZS kursi bo'yicha hisoblanadi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- MODALS & SLIDE-OUT DRAWERS -->
+    <!-- ===================================================================== -->
+
+    <!-- 1. Product Quick View Modal -->
+    <div id="quickViewModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-[slideInUp_0.25s_ease]">
+            <button onclick="closeQuickView()" aria-label="Yopish" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center text-apple-charcoal transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="quickViewContent" class="p-6 sm:p-8">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Slide-Out Shopping Cart Drawer -->
+    <div id="cartDrawer" class="hidden fixed inset-0 z-50 flex justify-end">
+        <div onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-black/50 backdrop-blur-xs drawer-backdrop"></div>
+        <div class="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col z-10">
+            <!-- Drawer Header -->
+            <div class="p-5 border-b border-black/10 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-bag-shopping text-apple-blue text-lg"></i>
+                    <h3 class="text-lg font-extrabold text-apple-charcoal">Savatingiz (<span id="cartDrawerCount">0</span>)</h3>
+                </div>
+                <button onclick="toggleCartDrawer(false)" class="w-8 h-8 rounded-full hover:bg-black/5 flex items-center justify-center text-apple-gray">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items List -->
+            <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-4">
+                <!-- Rendered via JS -->
+            </div>
+
+            <!-- Cart Footer & Promo Code -->
+            <div id="cartFooter" class="p-5 bg-apple-bg border-t border-black/10 space-y-4">
+                <!-- Promo Input -->
+                <div>
+                    <div class="flex gap-2">
+                        <input
+                            type="text"
+                            id="promoCodeInput"
+                            placeholder="Promo-kod (masalan: ISTORE10)"
+                            class="flex-1 bg-white border border-black/10 rounded-xl px-3.5 py-2 text-xs font-semibold uppercase outline-none focus:border-apple-blue"
+                        >
+                        <button onclick="applyPromoCode()" class="px-4 py-2 rounded-xl bg-apple-charcoal text-white text-xs font-bold hover:bg-black transition">
+                            Qo'llash
+                        </button>
+                    </div>
+                    <p id="promoFeedback" class="text-[11px] mt-1 hidden"></p>
+                </div>
+
+                <!-- Price Breakdown -->
+                <div class="space-y-1.5 text-sm">
+                    <div class="flex justify-between text-apple-gray">
+                        <span>Jami mahsulotlar:</span>
+                        <span id="cartSubtotalUsd" class="font-semibold text-apple-charcoal">$0</span>
+                    </div>
+                    <div id="discountRow" class="hidden flex justify-between text-emerald-600 font-medium">
+                        <span>Chegirma (<span id="discountLabel">10%</span>):</span>
+                        <span id="cartDiscountUsd">-$0</span>
+                    </div>
+                    <div class="flex justify-between text-apple-gray">
+                        <span>Yetkazib berish:</span>
+                        <span class="text-emerald-600 font-semibold">Bepul</span>
+                    </div>
+                    <div class="pt-2 border-t border-black/10 flex justify-between items-baseline">
+                        <span class="font-bold text-apple-charcoal">Umumiy summa:</span>
+                        <div class="text-right">
+                            <div id="cartTotalUsd" class="text-xl font-extrabold text-apple-charcoal">$0</div>
+                            <div id="cartTotalUzs" class="text-xs font-semibold text-apple-gray">0 so'm</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    onclick="openCheckoutModal()"
+                    class="w-full py-3.5 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white font-bold text-sm transition shadow-lg shadow-blue-600/25"
+                >
+                    Buyurtmani rasmiylashtirish
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Slide-Out Wishlist Drawer -->
+    <div id="wishlistDrawer" class="hidden fixed inset-0 z-50 flex justify-end">
+        <div onclick="toggleWishlistDrawer(false)" class="fixed inset-0 bg-black/50 backdrop-blur-xs"></div>
+        <div class="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col z-10">
+            <div class="p-5 border-b border-black/10 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-heart text-rose-500 text-lg"></i>
+                    <h3 class="text-lg font-extrabold text-apple-charcoal">Sevimli qurilmalar</h3>
+                </div>
+                <button onclick="toggleWishlistDrawer(false)" class="w-8 h-8 rounded-full hover:bg-black/5 flex items-center justify-center text-apple-gray">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="wishlistItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-3">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Checkout & Order Confirmation Modal -->
+    <div id="checkoutModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] overflow-y-auto shadow-2xl relative p-6 sm:p-8">
+            <button onclick="closeCheckoutModal()" aria-label="Yopish" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/5 hover:bg-black/10 flex items-center justify-center text-apple-charcoal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Checkout Form View -->
+            <div id="checkoutFormView">
+                <span class="text-xs font-bold uppercase tracking-wider text-apple-blue">Tezkor buyurtma</span>
+                <h3 class="text-2xl font-extrabold text-apple-charcoal mt-0.5 mb-5">Ma'lumotlaringizni kiriting</h3>
+
+                <form id="orderForm" onsubmit="submitOrder(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-apple-charcoal mb-1">Ism va familiyangiz *</label>
+                        <input type="text" id="custName" required placeholder="Masalan: Otabek Karimov" class="w-full bg-apple-bg border border-black/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-apple-blue">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-apple-charcoal mb-1">Telefon raqamingiz *</label>
+                        <input type="tel" id="custPhone" required value="+998 " placeholder="+998 90 123 45 67" class="w-full bg-apple-bg border border-black/10 rounded-xl px-4 py-2.5 text-sm font-medium outline-none focus:border-apple-blue">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-apple-charcoal mb-1">Hudud / Shahar *</label>
+                            <select id="custRegion" class="w-full bg-apple-bg border border-black/10 rounded-xl px-3.5 py-2.5 text-sm font-medium outline-none focus:border-apple-blue">
+                                <option value="Toshkent shahri">Toshkent shahri</option>
+                                <option value="Qarshi / Qashqadaryo">Qarshi / Qashqadaryo</option>
+                                <option value="Samarqand">Samarqand</option>
+                                <option value="Buxoro">Buxoro</option>
+                                <option value="Farg'ona vodiysi">Farg'ona / Andijon / Namangan</option>
+                                <option value="Boshqa viloyat">Boshqa viloyat</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-apple-charcoal mb-1">Yetkazib berish</label>
+                            <select id="custDelivery" class="w-full bg-apple-bg border border-black/10 rounded-xl px-3.5 py-2.5 text-sm font-medium outline-none focus:border-apple-blue">
+                                <option value="Kuryer orqali (Bepul)">Kuryer orqali (Bepul)</option>
+                                <option value="Do'kondan olib ketish">Do'kondan olib ketish</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-apple-charcoal mb-1">Manzil (Ko'cha, uy, mo'ljal)</label>
+                        <input type="text" id="custAddress" placeholder="Masalan: Amir Temur ko'chasi, 12-uy" class="w-full bg-apple-bg border border-black/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-apple-blue">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-apple-charcoal mb-1.5">To'lov usuli</label>
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="paymentMethod" value="Naqd / Karta (Qabul qilganda)" checked class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-black/10 peer-checked:border-apple-blue peer-checked:bg-blue-50/60 text-xs font-bold text-center transition">
+                                    💵 Qabul qilganda
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="paymentMethod" value="Click / Payme" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-black/10 peer-checked:border-apple-blue peer-checked:bg-blue-50/60 text-xs font-bold text-center transition">
+                                    💳 Click / Payme
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="paymentMethod" value="Uzum Nasiya (Muddatli)" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-black/10 peer-checked:border-apple-blue peer-checked:bg-blue-50/60 text-xs font-bold text-center transition">
+                                    📅 Muddatli to'lov
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="paymentMethod" value="Trade-In bilan" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-black/10 peer-checked:border-apple-blue peer-checked:bg-blue-50/60 text-xs font-bold text-center transition">
+                                    🔄 Trade-In bilan
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="p-3.5 rounded-2xl bg-apple-bg flex items-center justify-between">
+                        <span class="text-xs font-semibold text-apple-gray">To'lanadigan summa:</span>
+                        <div class="text-right">
+                            <div id="checkoutFinalUsd" class="text-lg font-extrabold text-apple-charcoal">$0</div>
+                            <div id="checkoutFinalUzs" class="text-[11px] font-semibold text-apple-blue">0 so'm</div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white font-bold text-sm transition shadow-lg shadow-blue-600/25">
+                        Buyurtmani tasdiqlash
+                    </button>
+                </form>
+            </div>
+
+            <!-- Order Receipt / Success View -->
+            <div id="orderSuccessView" class="hidden text-center py-4 space-y-4">
+                <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center text-3xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <div>
+                    <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Buyurtma qabul qilindi!</span>
+                    <h3 class="text-2xl font-extrabold text-apple-charcoal mt-2">Rahmat, <span id="receiptCustomerName">Mijoz</span>!</h3>
+                    <p class="text-sm text-apple-gray mt-1">Operatorimiz 5 daqiqa ichida siz bilan bog'lanadi.</p>
+                </div>
+
+                <div class="bg-apple-bg rounded-2xl p-4 text-left text-xs space-y-2 border border-black/5">
+                    <div class="flex justify-between">
+                        <span class="text-apple-gray">Buyurtma raqami:</span>
+                        <span id="receiptOrderId" class="font-extrabold text-apple-charcoal">#IST-84920</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-apple-gray">Hudud:</span>
+                        <span id="receiptRegion" class="font-semibold text-apple-charcoal">Toshkent</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-apple-gray">To'lov usuli:</span>
+                        <span id="receiptPayment" class="font-semibold text-apple-charcoal">Naqd</span>
+                    </div>
+                    <div class="flex justify-between pt-2 border-t border-black/10">
+                        <span class="text-apple-gray font-bold">Jami summa:</span>
+                        <span id="receiptTotal" class="font-extrabold text-apple-blue">$1,299</span>
+                    </div>
+                </div>
+
+                <button onclick="closeCheckoutModal()" class="w-full py-3 rounded-full bg-apple-charcoal text-white font-bold text-sm hover:bg-black transition">
+                    Xaridni davom ettirish
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-xs w-full pointer-events-none"></div>
+
+    <!-- ===================================================================== -->
+    <!-- APPLICATION JAVASCRIPT -->
+    <!-- ===================================================================== -->
+    <script>
+        // Exchange rate: 1 USD = 12,800 UZS
+        const UZS_RATE = 12800;
+
+        // Comprehensive Realistic Product Catalog (12 Distinct Apple Products)
+        const PRODUCTS = [
+            {
+                id: 1,
+                name: "iPhone 16 Pro Max",
+                category: "iphone16",
+                badge: "Yangi Flagman",
+                popular: 100,
+                newest: 12,
+                basePrice: 1299,
+                image: "https://avatars.mds.yandex.net/i?id=d95771a7507162410b444b750f7bbb3ba4c84db1-13470922-images-thumbs&n=13",
+                colors: [
+                    { name: "Desert Titanium", hex: "#C2A88F" },
+                    { name: "Natural Titanium", hex: "#9A9893" },
+                    { name: "Black Titanium", hex: "#2C2C2E" },
+                    { name: "White Titanium", hex: "#F2F2F0" }
+                ],
+                storages: [
+                    { size: "256GB", delta: 0 },
+                    { size: "512GB", delta: 200 },
+                    { size: "1TB", delta: 400 }
+                ],
+                specs: {
+                    display: "6.9\" Super Retina XDR OLED, ProMotion 120Hz",
+                    chip: "Apple A18 Pro (6-yadroli GPU)",
+                    camera: "48MP Fusion + 48MP Ultra Wide + 12MP 5x Telephoto",
+                    battery: "33 soatgacha video ijro, USB-C 3.2",
+                    sim: "Nano-SIM + eSIM (UzIMEI rasmiy)"
+                }
+            },
+            {
+                id: 2,
+                name: "iPhone 17 Pro Max",
+                category: "iphone17",
+                badge: "Hit Sotuv",
+                popular: 96,
+                newest: 11,
+                basePrice: 1099,
+                image: "https://avatars.mds.yandex.net/i?id=88d4034d3a94bba794ac0ec7e670692a85d6d9dd-3986134-images-thumbs&n=13",
+                colors: [
+                    { name: "Natural Titanium", hex: "#9A9893" },
+                    { name: "Desert Titanium", hex: "#C2A88F" },
+                    { name: "Black Titanium", hex: "#2C2C2E" },
+                    { name: "White Titanium", hex: "#F2F2F0" }
+                ],
+                storages: [
+                    { size: "128GB", delta: 0 },
+                    { size: "256GB", delta: 100 },
+                    { size: "512GB", delta: 300 },
+                    { size: "1TB", delta: 500 }
+                ],
+                specs: {
+                    display: "6.3\" Super Retina XDR OLED, ProMotion 120Hz",
+                    chip: "Apple A18 Pro (3nm)",
+                    camera: "48MP Fusion + 48MP Ultra Wide + 5x Telephoto",
+                    battery: "27 soatgacha video ijro, MagSafe 25W",
+                    sim: "Nano-SIM + eSIM (UzIMEI rasmiy)"
+                }
+            },
+            {
+                id: 3,
+                name: "iPhone 18 Pro Max",
+                category: "iphone18",
+                badge: "Katta Ekran",
+                popular: 84,
+                newest: 10,
+                basePrice: 979,
+                image: "https://avatars.mds.yandex.net/i?id=af7d9e9d4f9e65cca5196390a11e58b3579051d7-4481783-images-thumbs&n=13",
+                colors: [
+                    { name: "Ultramarine", hex: "#4D6CFA" },
+                    { name: "Teal", hex: "#4FA3A5" },
+                    { name: "Pink", hex: "#F4A6C8" },
+                    { name: "Black", hex: "#232325" }
+                ],
+                storages: [
+                    { size: "128GB", delta: 0 },
+                    { size: "256GB", delta: 100 },
+                    { size: "512GB", delta: 300 }
+                ],
+                specs: {
+                    display: "6.7\" Super Retina XDR OLED, Dynamic Island",
+                    chip: "Apple A18 (Apple Intelligence)",
+                    camera: "48MP Fusion + 12MP Ultra Wide, Camera Control",
+                    battery: "27 soatgacha video ijro",
+                    sim: "Nano-SIM + eSIM (UzIMEI rasmiy)"
+                }
+            },
+            {
+                id: 4,
+                name: "iPhone Air",
+                category: "iphoneAir",
+                badge: "Yangi",
+                popular: 90,
+                newest: 9,
+                basePrice: 879,
+                image: "https://avatars.mds.yandex.net/i?id=469f1a0c3b8d2a8223d8c156b47f4f5fe23419a7-10237804-images-thumbs&n=13",
+                colors: [
+                    { name: "Ultramarine", hex: "#4D6CFA" },
+                    { name: "Teal", hex: "#4FA3A5" },
+                    { name: "White", hex: "#F5F5F7" },
+                    { name: "Black", hex: "#232325" }
+                ],
+                storages: [
+                    { size: "128GB", delta: 0 },
+                    { size: "256GB", delta: 100 },
+                    { size: "512GB", delta: 300 }
+                ],
+                specs: {
+                    display: "6.1\" Super Retina XDR OLED, 2000 nits",
+                    chip: "Apple A18 chipi",
+                    camera: "48MP Fusion asosiy kamera + Spatial Video",
+                    battery: "22 soatgacha video ijro",
+                    sim: "Nano-SIM + eSIM (UzIMEI rasmiy)"
+                }
+            },
+            {
+                id: 5,
+                name: "iPhone 15 Pro Max",
+                category: "iphone15",
+                badge: "Ommabop",
+                popular: 95,
+                newest: 8,
+                basePrice: 1129,
+                image: "https://avatars.mds.yandex.net/i?id=21181f82c7448f05f5b17eb0430fc8240246383d-4265079-images-thumbs&n=13",
+                colors: [
+                    { name: "Natural Titanium", hex: "#9A9893" },
+                    { name: "Blue Titanium", hex: "#3B4859" },
+                    { name: "Black Titanium", hex: "#2A2A2D" },
+                    { name: "White Titanium", hex: "#EFEFED" }
+                ],
+                storages: [
+                    { size: "256GB", delta: 0 },
+                    { size: "512GB", delta: 180 },
+                    { size: "1TB", delta: 360 }
+                ],
+                specs: {
+                    display: "6.7\" Super Retina XDR OLED, 120Hz ProMotion",
+                    chip: "Apple A17 Pro",
+                    camera: "48MP asosiy + 5x Optikal Zoom Telephoto",
+                    battery: "29 soatgacha video ijro, USB-C",
+                    sim: "Nano-SIM + eSIM (UzIMEI rasmiy)"
+                }
+            },
+            {
+                id: 6,
+                name: "iPhone 15 Pro",
+                category: "iphone15",
+                badge: "Chegirma",
+                popular: 89,
+                newest: 7,
+                basePrice: 979,
+                image: "https://avatars.mds.yandex.net/i?id=816e38563b5490c29d83872f482dd743b1abe0ab-4274889-images-thumbs&n=13",
+                colors: [
+                    { name: "Blue Titanium", hex: "#3B4859" },
+                    { name: "Natural Titanium", hex: "#9A9893" },
+                    { name: "Black Titanium", hex: "#2A2A2D" }
+                ],
+                storages: [
+                    { size: "128GB", delta: 0 },
+                    { size: "256GB", delta: 100 },
+                    { size: "512GB", delta: 280 }
+                ],
+                specs: {
+                    display: "6.1\" Super Retina XDR OLED, 120Hz",
+                    chip: "Apple A17 Pro",
+                    camera: "48MP Pro kamera tizimi, Action Button",
+                    battery: "23 soatgacha video ijro",
+                    sim: "Nano-SIM + eSIM (UzIMEI rasmiy)"
+                }
+            },
+            {
+                id: 7,
+                name: "iPhone Duo",
+                category: "IphoneDuo",
+                badge: "Eng yaxshi narx",
+                popular: 92,
+                newest: 6,
+                basePrice: 749,
+                image: "https://avatars.mds.yandex.net/i?id=aff1ab360633fc598ded535cdd58f77d7946151e-8209451-images-thumbs&n=13",
+                colors: [
+                    { name: "Pink", hex: "#F7C5D0" },
+                    { name: "Blue", hex: "#C8DDF0" },
+                    { name: "Black", hex: "#2B2B2E" },
+                    { name: "Green", hex: "#CBE3C8" }
+                ],
+                storages: [
+                    { size: "128GB", delta: 0 },
+                    { size: "256GB", delta: 100 },
+                    { size: "512GB", delta: 250 }
+                ],
+                specs: {
+                    display: "6.1\" Super Retina XDR OLED, Dynamic Island",
+                    chip: "Apple A16 Bionic",
+                    camera: "48MP asosiy kamera + 2x Telephoto",
+                    battery: "20 soatgacha video ijro, USB-C",
+                    sim: "Nano-SIM + eSIM (UzIMEI rasmiy)"
+                }
+            },
+            {
+                id: 8,
+                name: "iPhone 17 Pro",
+                category: "iphone17",
+                badge: "Hamyonbop",
+                popular: 82,
+                newest: 5,
+                basePrice: 629,
+                image: "https://avatars.mds.yandex.net/i?id=9f5f006d257212af927bd6301f2f54ab0f86ad7f-4303509-images-thumbs&n=13",
+                colors: [
+                    { name: "Midnight", hex: "#232931" },
+                    { name: "Starlight", hex: "#F4F0E8" },
+                    { name: "Purple", hex: "#D7C9E3" },
+                    { name: "Blue", hex: "#9BB5CE" }
+                ],
+                storages: [
+                    { size: "128GB", delta: 0 },
+                    { size: "256GB", delta: 90 }
+                ],
+                specs: {
+                    display: "6.1\" Super Retina XDR OLED",
+                    chip: "Apple A15 Bionic (5-yadroli GPU)",
+                    camera: "12MP Dual kamera, Photonic Engine",
+                    battery: "20 soatgacha video ijro",
+                    sim: "Nano-SIM + eSIM (UzIMEI rasmiy)"
+                }
+            },
+            {
+                id: 9,
+                name: "AirPods Pro 2 (USB-C)",
+                category: "accessories",
+                badge: "Top Aksessuar",
+                popular: 94,
+                newest: 8,
+                basePrice: 239,
+                image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=800&q=85",
+                colors: [
+                    { name: "White", hex: "#FFFFFF" }
+                ],
+                storages: [
+                    { size: "USB-C MagSafe", delta: 0 }
+                ],
+                specs: {
+                    display: "MagSafe zaryadlash qutisi + dinamik",
+                    chip: "Apple H2 quloqchin chipi",
+                    camera: "2x kuchliroq Active Noise Cancellation",
+                    battery: "30 soatgacha umumiy ishlash vaqti",
+                    sim: "IP54 chang va suvdan himoya"
+                }
+            },
+            {
+                id: 10,
+                name: "Apple Watch Ultra 2",
+                category: "accessories",
+                badge: "Titan 49mm",
+                popular: 87,
+                newest: 9,
+                basePrice: 799,
+                image: "https://avatars.mds.yandex.net/i?id=7e34d14fa9c31bc73f7123e692a27ee3c314b6d6-5266301-images-thumbs&n=13",
+                colors: [
+                    { name: "Black Titanium", hex: "#262628" },
+                    { name: "Natural Titanium", hex: "#A8A59E" }
+                ],
+                storages: [
+                    { size: "49mm GPS+Cellular", delta: 0 }
+                ],
+                specs: {
+                    display: "49mm Always-On Retina (3000 nits yorqinlik)",
+                    chip: "Apple S9 SiP + Double Tap",
+                    camera: "Aniq ikki chastotali GPS, EKG, SpO2",
+                    battery: "36 soatgacha (Low Power rejimda 72 soat)",
+                    sim: "100m suv ostida suzish (WR100)"
+                }
+            },
+            {
+                id: 11,
+                name: "Apple MagSafe Charger 25W",
+                category: "accessories",
+                badge: "Original",
+                popular: 78,
+                newest: 7,
+                basePrice: 49,
+                image: "https://avatars.mds.yandex.net/i?id=9ec708f52f257779bb078ea4c4046ce05812b588-5299794-images-thumbs&n=13",
+                colors: [
+                    { name: "Silver / White", hex: "#E5E5EA" }
+                ],
+                storages: [
+                    { size: "1 metr kabel", delta: 0 },
+                    { size: "2 metr kabel", delta: 10 }
+                ],
+                specs: {
+                    display: "Magnitli simsiz tez zaryadlash",
+                    chip: "Qi2 va MagSafe sertifikatlangan",
+                    camera: "iPhone 16 uchun 25W gacha tezkor quvvat",
+                    battery: "30 daqiqada 50% gacha quvvatlash",
+                    sim: "USB-C ulagich"
+                }
+            },
+            {
+                id: 12,
+                name: "iPhone 16 Pro Silicone Case",
+                category: "accessories",
+                badge: "Camera Control",
+                popular: 75,
+                newest: 10,
+                basePrice: 55,
+                image: "https://avatars.mds.yandex.net/i?id=f566c1dca30a899e5613efe3b621ad11739d2ead-4944707-images-thumbs&n=13",
+                colors: [
+                    { name: "Black", hex: "#1D1D1F" },
+                    { name: "Ultramarine", hex: "#3B5BDB" },
+                    { name: "Stone Gray", hex: "#8E8E93" },
+                    { name: "Plum", hex: "#6B3E52" }
+                ],
+                storages: [
+                    { size: "16 Pro Max", delta: 0 },
+                    { size: "16 Pro", delta: 0 }
+                ],
+                specs: {
+                    display: "Sapphire kristalli Camera Control tugmasi",
+                    chip: "O'rnatilgan MagSafe magnitlari",
+                    camera: "Ichki yumshoq mikrofibra qoplama",
+                    battery: "Simsiz zaryadlashga to'liq mos",
+                    sim: "Original Apple qadoqda"
+                }
+            }
+        ];
+
+        // Application State with LocalStorage persistence
+        let state = {
+            category: 'all',
+            searchQuery: '',
+            currencyMode: 'BOTH', // 'BOTH', 'USD', 'UZS'
+            selectedVariants: {}, // { productId: { colorIdx: 0, storageIdx: 0 } }
+            cart: JSON.parse(localStorage.getItem('istore_cart') || '[]'),
+            wishlist: JSON.parse(localStorage.getItem('istore_wishlist') || '[]'),
+            promoDiscountPercent: 0,
+            promoFixedUsd: 0,
+            promoCodeApplied: '',
+            installmentMonths: 12,
+            tradeInMultiplier: 1.0
+        };
+
+        // Initialize default variant selections for each product
+        PRODUCTS.forEach(p => {
+            state.selectedVariants[p.id] = { colorIdx: 0, storageIdx: 0 };
+        });
+
+        // Formatting Helpers
+        function formatUsd(amount) {
+            return '$' + Math.round(amount).toLocaleString('en-US');
+        }
+
+        function formatUzs(usdAmount) {
+            const uzs = Math.round(usdAmount * UZS_RATE);
+            return uzs.toLocaleString('ru-RU') + " so'm";
+        }
+
+        function getProductPrice(product) {
+            const variant = state.selectedVariants[product.id] || { colorIdx: 0, storageIdx: 0 };
+            const storageObj = product.storages[variant.storageIdx] || product.storages[0];
+            return product.basePrice + storageObj.delta;
+        }
+
+        function saveState() {
+            localStorage.setItem('istore_cart', JSON.stringify(state.cart));
+            localStorage.setItem('istore_wishlist', JSON.stringify(state.wishlist));
+            updateBadges();
+        }
+
+        // Toast Notification System
+        function showToast(message, icon = 'fa-circle-check', colorClass = 'text-emerald-400') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast-enter pointer-events-auto bg-zinc-900/95 backdrop-blur-md text-white px-4 py-3 rounded-2xl shadow-xl border border-white/10 flex items-center gap-3 text-xs font-semibold';
+            toast.innerHTML = `
+                <i class="fa-solid ${icon} ${colorClass} text-base"></i>
+                <span class="leading-snug">${message}</span>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+                toast.style.transition = 'all 0.25s ease';
+                setTimeout(() => toast.remove(), 260);
+            }, 2800);
+        }
+
+        // Currency Display Toggle
+        function toggleCurrencyDisplay() {
+            const modes = ['BOTH', 'USD', 'UZS'];
+            const nextIdx = (modes.indexOf(state.currencyMode) + 1) % modes.length;
+            state.currencyMode = modes[nextIdx];
+            const labels = { BOTH: 'USD / UZS', USD: 'Faqat USD ($)', UZS: "Faqat SO'M" };
+            document.getElementById('currencyLabel').textContent = labels[state.currencyMode];
+            renderProducts();
+            updateCartUI();
+        }
+
+        // Category & Search Filtering
+        function filterByCategory(cat) {
+            state.category = cat;
+            document.querySelectorAll('.cat-tab').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.className = 'cat-tab active px-5 py-2.5 rounded-full text-sm font-semibold bg-apple-charcoal text-white transition whitespace-nowrap';
+                } else {
+                    btn.className = 'cat-tab px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-apple-charcoal hover:bg-black/5 border border-black/10 transition whitespace-nowrap';
+                }
+            });
+            renderProducts();
+        }
+
+        function resetFilters() {
+            state.category = 'all';
+            state.searchQuery = '';
+            document.getElementById('searchInput').value = '';
+            filterByCategory('all');
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            state.searchQuery = e.target.value.trim().toLowerCase();
+            renderProducts();
+        });
+
+        // Variant Selection on Product Cards
+        function selectCardColor(productId, colorIdx) {
+            state.selectedVariants[productId].colorIdx = colorIdx;
+            renderProducts();
+        }
+
+        function selectCardStorage(productId, storageIdx) {
+            state.selectedVariants[productId].storageIdx = storageIdx;
+            renderProducts();
+        }
+
+        // Render Catalog Grid
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const emptyState = document.getElementById('emptyState');
+            const sortBy = document.getElementById('sortSelect').value;
+
+            let filtered = PRODUCTS.filter(p => {
+                const matchCat = state.category === 'all' || p.category === state.category;
+                const matchSearch = !state.searchQuery ||
+                    p.name.toLowerCase().includes(state.searchQuery) ||
+                    p.specs.chip.toLowerCase().includes(state.searchQuery);
+                return matchCat && matchSearch;
+            });
+
+            // Sort logic
+            if (sortBy === 'price-asc') {
+                filtered.sort((a, b) => getProductPrice(a) - getProductPrice(b));
+            } else if (sortBy === 'price-desc') {
+                filtered.sort((a, b) => getProductPrice(b) - getProductPrice(a));
+            } else if (sortBy === 'newest') {
+                filtered.sort((a, b) => b.newest - a.newest);
+            } else {
+                filtered.sort((a, b) => b.popular - a.popular);
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.innerHTML = filtered.map(product => {
+                const variant = state.selectedVariants[product.id];
+                const currentColor = product.colors[variant.colorIdx];
+                const currentPrice = getProductPrice(product);
+                const isWishlisted = state.wishlist.includes(product.id);
+
+                let priceHtml = '';
+                if (state.currencyMode === 'USD') {
+                    priceHtml = `<div class="text-xl font-extrabold text-apple-charcoal">${formatUsd(currentPrice)}</div>`;
+                } else if (state.currencyMode === 'UZS') {
+                    priceHtml = `<div class="text-lg font-extrabold text-apple-charcoal">${formatUzs(currentPrice)}</div>`;
+                } else {
+                    priceHtml = `
+                        <div class="text-xl font-extrabold text-apple-charcoal">${formatUsd(currentPrice)}</div>
+                        <div class="text-xs font-medium text-apple-gray">${formatUzs(currentPrice)}</div>
+                    `;
+                }
+
+                return `
+                    <div class="product-card bg-white rounded-3xl p-5 border border-black/5 flex flex-col justify-between relative group">
+                        <!-- Top Badges & Wishlist -->
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span class="px-2.5 py-1 rounded-full bg-apple-bg text-[11px] font-bold text-apple-charcoal">
+                                    ${product.badge}
+                                </span>
+                                <button
+                                    onclick="toggleWishlist(${product.id})"
+                                    aria-label="Sevimlilarga qo'shish"
+                                    class="w-8 h-8 rounded-full bg-apple-bg hover:bg-rose-50 flex items-center justify-center transition ${isWishlisted ? 'text-rose-500' : 'text-apple-gray hover:text-rose-500'}"
+                                >
+                                    <i class="${isWishlisted ? 'fa-solid' : 'fa-regular'} fa-heart text-sm"></i>
+                                </button>
+                            </div>
+
+                            <!-- Image Container -->
+                            <div onclick="openQuickView(${product.id})" class="cursor-pointer relative h-48 rounded-2xl bg-apple-bg overflow-hidden mb-4 flex items-center justify-center">
+                                <img
+                                    src="${product.image}"
+                                    alt="${product.name}"
+                                    loading="lazy"
+                                    onerror="this.src='https://placehold.co/500x400/f5f5f7/1d1d1f?text=${encodeURIComponent(product.name)}'"
+                                    class="product-image w-full h-full object-cover"
+                                >
+                                <span class="opacity-0 group-hover:opacity-100 transition duration-200 absolute bottom-2.5 px-3 py-1 rounded-full bg-black/75 backdrop-blur-md text-white text-[11px] font-semibold">
+                                    Tezkor ko'rish
+                                </span>
+                            </div>
+
+                            <!-- Title & Selected Color Name -->
+                            <div class="mb-3">
+                                <h3 onclick="openQuickView(${product.id})" class="cursor-pointer text-lg font-bold text-apple-charcoal hover:text-apple-blue transition leading-snug">
+                                    ${product.name}
+                                </h3>
+                                <p class="text-xs text-apple-gray mt-0.5">Rang: <span class="font-semibold text-apple-charcoal">${currentColor.name}</span></p>
+                            </div>
+
+                            <!-- Color Swatches -->
+                            <div class="flex items-center gap-2 mb-3.5">
+                                ${product.colors.map((c, idx) => `
+                                    <button
+                                        type="button"
+                                        title="${c.name}"
+                                        onclick="selectCardColor(${product.id}, ${idx})"
+                                        style="background-color: ${c.hex};"
+                                        class="swatch-btn w-5 h-5 rounded-full border border-black/20 ${idx === variant.colorIdx ? 'active' : ''}"
+                                    ></button>
+                                `).join('')}
+                            </div>
+
+                            <!-- Storage Capacity Pills -->
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                ${product.storages.map((s, idx) => `
+                                    <button
+                                        type="button"
+                                        onclick="selectCardStorage(${product.id}, ${idx})"
+                                        class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition ${
+                                            idx === variant.storageIdx
+                                            ? 'border-apple-blue bg-blue-50 text-apple-blue'
+                                            : 'border-black/10 bg-white text-apple-gray hover:border-black/30'
+                                        }"
+                                    >
+                                        ${s.size}
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Price & Action Buttons -->
+                        <div class="pt-3 border-t border-black/5">
+                            <div class="mb-3">
+                                ${priceHtml}
+                            </div>
+                            <div class="grid grid-cols-5 gap-2">
+                                <button
+                                    onclick="openQuickView(${product.id})"
+                                    class="col-span-2 py-2.5 px-2 rounded-full bg-apple-bg hover:bg-black/10 text-apple-charcoal text-xs font-bold transition"
+                                >
+                                    Batafsil
+                                </button>
+                                <button
+                                    onclick="addToCart(${product.id})"
+                                    class="col-span-3 py-2.5 px-3 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-sm"
+                                >
+                                    <i class="fa-solid fa-bag-shopping text-[11px]"></i>
+                                    <span>Savatga</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Quick View Modal Logic
+        function openQuickView(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+            const variant = state.selectedVariants[productId];
+            const color = product.colors[variant.colorIdx];
+            const storage = product.storages[variant.storageIdx];
+            const price = getProductPrice(product);
+
+            const content = document.getElementById('quickViewContent');
+            content.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="rounded-2xl overflow-hidden bg-apple-bg h-72 sm:h-80">
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}"
+                            onerror="this.src='https://placehold.co/600x500/f5f5f7/1d1d1f?text=${encodeURIComponent(product.name)}'"
+                            class="w-full h-full object-cover"
+                        >
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <span class="px-2.5 py-1 rounded-full bg-blue-50 text-apple-blue text-xs font-bold">${product.badge}</span>
+                            <h3 class="text-2xl font-extrabold text-apple-charcoal mt-2">${product.name}</h3>
+                            <p class="text-xs text-apple-gray mt-0.5">Tanlangan: <strong>${color.name}</strong> • <strong>${storage.size}</strong></p>
+                        </div>
+
+                        <div class="p-3.5 rounded-2xl bg-apple-bg">
+                            <div class="text-2xl font-extrabold text-apple-charcoal">${formatUsd(price)}</div>
+                            <div class="text-xs font-semibold text-apple-gray">${formatUzs(price)} • Oyiga ~${formatUsd(Math.ceil((price * 1.15) / 12))} dan</div>
+                        </div>
+
+                        <!-- Color & Storage inside modal -->
+                        <div class="space-y-2.5">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-semibold text-apple-gray w-16">Rang:</span>
+                                <div class="flex gap-2">
+                                    ${product.colors.map((c, idx) => `
+                                        <button
+                                            onclick="selectCardColor(${product.id}, ${idx}); openQuickView(${product.id})"
+                                            style="background-color: ${c.hex};"
+                                            title="${c.name}"
+                                            class="swatch-btn w-6 h-6 rounded-full border border-black/20 ${idx === variant.colorIdx ? 'active' : ''}"
+                                        ></button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="text-xs font-semibold text-apple-gray w-16">Xotira:</span>
+                                <div class="flex flex-wrap gap-1.5">
+                                    ${product.storages.map((s, idx) => `
+                                        <button
+                                            onclick="selectCardStorage(${product.id}, ${idx}); openQuickView(${product.id})"
+                                            class="px-3 py-1 rounded-lg text-xs font-bold border ${
+                                                idx === variant.storageIdx
+                                                ? 'border-apple-blue bg-blue-50 text-apple-blue'
+                                                : 'border-black/10 text-apple-charcoal'
+                                            }"
+                                        >
+                                            ${s.size}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technical Specs Table -->
+                        <div class="border-t border-black/10 pt-3 space-y-1.5 text-xs">
+                            <div class="flex justify-between gap-2"><span class="text-apple-gray">Ekran:</span><span class="font-semibold text-right">${product.specs.display}</span></div>
+                            <div class="flex justify-between gap-2"><span class="text-apple-gray">Protsessor:</span><span class="font-semibold text-right">${product.specs.chip}</span></div>
+                            <div class="flex justify-between gap-2"><span class="text-apple-gray">Kamera:</span><span class="font-semibold text-right">${product.specs.camera}</span></div>
+                            <div class="flex justify-between gap-2"><span class="text-apple-gray">Batareya:</span><span class="font-semibold text-right">${product.specs.battery}</span></div>
+                            <div class="flex justify-between gap-2"><span class="text-apple-gray">Aloqa:</span><span class="font-semibold text-right">${product.specs.sim}</span></div>
+                        </div>
+
+                        <div class="pt-2 flex gap-2.5">
+                            <button
+                                onclick="addToCart(${product.id}); closeQuickView(); toggleCartDrawer(true);"
+                                class="flex-1 py-3 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white text-sm font-bold transition"
+                            >
+                                Savatga qo'shish
+                            </button>
+                            <button
+                                onclick="toggleWishlist(${product.id}); openQuickView(${product.id});"
+                                class="px-4 py-3 rounded-full border border-black/15 hover:bg-black/5 text-apple-charcoal text-sm font-bold transition"
+                            >
+                                <i class="${state.wishlist.includes(product.id) ? 'fa-solid text-rose-500' : 'fa-regular'} fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('quickViewModal').classList.remove('hidden');
+        }
+
+        function closeQuickView() {
+            document.getElementById('quickViewModal').classList.add('hidden');
+        }
+
+        // Wishlist Functions
+        function toggleWishlist(productId) {
+            const idx = state.wishlist.indexOf(productId);
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (idx === -1) {
+                state.wishlist.push(productId);
+                showToast(`${product.name} sevimlilarga qo'shildi`, 'fa-heart', 'text-rose-400');
+            } else {
+                state.wishlist.splice(idx, 1);
+                showToast(`${product.name} sevimlilardan olib tashlandi`, 'fa-heart-crack', 'text-gray-400');
+            }
+            saveState();
+            renderProducts();
+            renderWishlistDrawer();
+        }
+
+        function toggleWishlistDrawer(open) {
+            const drawer = document.getElementById('wishlistDrawer');
+            if (open) {
+                renderWishlistDrawer();
+                drawer.classList.remove('hidden');
+            } else {
+                drawer.classList.add('hidden');
+            }
+        }
+
+        function renderWishlistDrawer() {
+            const container = document.getElementById('wishlistItemsContainer');
+            if (state.wishlist.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16">
+                        <div class="w-14 h-14 rounded-full bg-apple-bg mx-auto flex items-center justify-center text-xl text-apple-gray mb-3">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                        <p class="text-sm font-bold text-apple-charcoal">Sevimlilar ro'yxati bo'sh</p>
+                        <p class="text-xs text-apple-gray mt-1">Yoqqan iPhone ustidagi yurakchani bosing.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = state.wishlist.map(id => {
+                const p = PRODUCTS.find(item => item.id === id);
+                if (!p) return '';
+                return `
+                    <div class="flex items-center gap-3 p-3 rounded-2xl bg-apple-bg">
+                        <img src="${p.image}" alt="${p.name}" class="w-16 h-16 rounded-xl object-cover bg-white">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-bold text-apple-charcoal truncate">${p.name}</h4>
+                            <div class="text-xs font-extrabold text-apple-blue mt-0.5">${formatUsd(p.basePrice)}</div>
+                            <div class="flex gap-2 mt-2">
+                                <button onclick="addToCart(${p.id}); toggleWishlistDrawer(false); toggleCartDrawer(true);" class="px-3 py-1 rounded-full bg-apple-charcoal text-white text-[11px] font-semibold">
+                                    Savatga
+                                </button>
+                                <button onclick="toggleWishlist(${p.id})" class="text-[11px] text-rose-500 font-semibold hover:underline">
+                                    O'chirish
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Shopping Cart Functions
+        function addToCart(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+            const variant = state.selectedVariants[productId];
+            const color = product.colors[variant.colorIdx].name;
+            const storage = product.storages[variant.storageIdx].size;
+            const unitPrice = getProductPrice(product);
+            const key = `${productId}-${color}-${storage}`;
+
+            const existing = state.cart.find(item => item.key === key);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                state.cart.push({
+                    key,
+                    productId,
+                    name: product.name,
+                    image: product.image,
+                    color,
+                    storage,
+                    unitPrice,
+                    qty: 1
+                });
+            }
+
+            saveState();
+            updateCartUI();
+            showToast(`${product.name} (${storage}) savatga qo'shildi!`);
+        }
+
+        function quickAddDefault(productId) {
+            addToCart(productId);
+            toggleCartDrawer(true);
+        }
+
+        function updateCartQty(key, delta) {
+            const item = state.cart.find(i => i.key === key);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                state.cart = state.cart.filter(i => i.key !== key);
+            }
+            saveState();
+            updateCartUI();
+        }
+
+        function removeCartItem(key) {
+            state.cart = state.cart.filter(i => i.key !== key);
+            saveState();
+            updateCartUI();
+        }
+
+        function applyPromoCode() {
+            const input = document.getElementById('promoCodeInput').value.trim().toUpperCase();
+            const feedback = document.getElementById('promoFeedback');
+            feedback.classList.remove('hidden');
+
+            if (input === 'ISTORE10' || input === 'APPLE10') {
+                state.promoDiscountPercent = 10;
+                state.promoFixedUsd = 0;
+                state.promoCodeApplied = input;
+                feedback.textContent = "Tabriklaymiz! 10% maxsus chegirma qo'llanildi.";
+                feedback.className = 'text-[11px] mt-1 text-emerald-600 font-semibold';
+            } else if (input.startsWith('TRADEIN')) {
+                const val = parseInt(input.replace('TRADEIN', ''), 10) || 300;
+                state.promoFixedUsd = val;
+                state.promoDiscountPercent = 0;
+                state.promoCodeApplied = input;
+                feedback.textContent = `Trade-In chegirmasi (-$${val}) qo'llanildi!`;
+                feedback.className = 'text-[11px] mt-1 text-emerald-600 font-semibold';
+            } else {
+                state.promoDiscountPercent = 0;
+                state.promoFixedUsd = 0;
+                state.promoCodeApplied = '';
+                feedback.textContent = "Noto'g'ri promo-kod. Sinab ko'ring: ISTORE10";
+                feedback.className = 'text-[11px] mt-1 text-rose-500 font-semibold';
+            }
+            updateCartUI();
+        }
+
+        function getCartTotals() {
+            const subtotal = state.cart.reduce((sum, item) => sum + item.unitPrice * item.qty, 0);
+            let discount = 0;
+            if (state.promoDiscountPercent > 0) {
+                discount = Math.round(subtotal * (state.promoDiscountPercent / 100));
+            } else if (state.promoFixedUsd > 0) {
+                discount = Math.min(subtotal, state.promoFixedUsd);
+            }
+            const total = Math.max(0, subtotal - discount);
+            return { subtotal, discount, total };
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cartItemsContainer');
+            const footer = document.getElementById('cartFooter');
+            const totalCount = state.cart.reduce((sum, i) => sum + i.qty, 0);
+            document.getElementById('cartDrawerCount').textContent = totalCount;
+
+            if (state.cart.length === 0) {
+                footer.classList.add('hidden');
+                container.innerHTML = `
+                    <div class="text-center py-20">
+                        <div class="w-16 h-16 rounded-full bg-apple-bg mx-auto flex items-center justify-center text-2xl text-apple-gray mb-4">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <h4 class="text-base font-bold text-apple-charcoal">Savatingiz hozircha bo'sh</h4>
+                        <p class="text-xs text-apple-gray mt-1 mb-5">Katalogdan o'zingizga yoqqan Apple qurilmasini tanlang.</p>
+                        <button onclick="toggleCartDrawer(false)" class="px-6 py-2.5 rounded-full bg-apple-blue text-white text-xs font-bold">
+                            Modellarni ko'rish
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            footer.classList.remove('hidden');
+            container.innerHTML = state.cart.map(item => `
+                <div class="flex gap-3.5 p-3.5 rounded-2xl bg-apple-bg border border-black/5">
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-xl object-cover bg-white shrink-0">
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-start gap-2">
+                            <h4 class="text-sm font-bold text-apple-charcoal truncate">${item.name}</h4>
+                            <button onclick="removeCartItem('${item.key}')" class="text-apple-gray hover:text-rose-500 text-xs">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                        <p class="text-[11px] text-apple-gray mt-0.5">${item.color} • ${item.storage}</p>
+                        <div class="flex items-center justify-between mt-2.5">
+                            <div class="inline-flex items-center bg-white rounded-full border border-black/10 px-1.5 py-0.5">
+                                <button onclick="updateCartQty('${item.key}', -1)" class="w-6 h-6 text-xs font-bold text-apple-charcoal hover:text-apple-blue">-</button>
+                                <span class="px-2.5 text-xs font-extrabold">${item.qty}</span>
+                                <button onclick="updateCartQty('${item.key}', 1)" class="w-6 h-6 text-xs font-bold text-apple-charcoal hover:text-apple-blue">+</button>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm font-extrabold text-apple-charcoal">${formatUsd(item.unitPrice * item.qty)}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            const { subtotal, discount, total } = getCartTotals();
+            document.getElementById('cartSubtotalUsd').textContent = formatUsd(subtotal);
+
+            const discountRow = document.getElementById('discountRow');
+            if (discount > 0) {
+                discountRow.classList.remove('hidden');
+                document.getElementById('discountLabel').textContent = state.promoCodeApplied;
+                document.getElementById('cartDiscountUsd').textContent = '-' + formatUsd(discount);
+            } else {
+                discountRow.classList.add('hidden');
+            }
+
+            document.getElementById('cartTotalUsd').textContent = formatUsd(total);
+            document.getElementById('cartTotalUzs').textContent = formatUzs(total);
+        }
+
+        function toggleCartDrawer(open) {
+            const drawer = document.getElementById('cartDrawer');
+            if (open) {
+                updateCartUI();
+                drawer.classList.remove('hidden');
+            } else {
+                drawer.classList.add('hidden');
+            }
+        }
+
+        function updateBadges() {
+            const cartCount = state.cart.reduce((sum, i) => sum + i.qty, 0);
+            const wishCount = state.wishlist.length;
+
+            document.getElementById('cartBadge').textContent = cartCount;
+
+            const wishBadge = document.getElementById('wishlistBadge');
+            wishBadge.textContent = wishCount;
+            if (wishCount > 0) {
+                wishBadge.classList.remove('hidden');
+            } else {
+                wishBadge.classList.add('hidden');
+            }
+        }
+
+        // Checkout Modal & Order Submission
+        function openCheckoutModal() {
+            if (state.cart.length === 0) return;
+            toggleCartDrawer(false);
+            const { total } = getCartTotals();
+            document.getElementById('checkoutFinalUsd').textContent = formatUsd(total);
+            document.getElementById('checkoutFinalUzs').textContent = formatUzs(total);
+            document.getElementById('checkoutFormView').classList.remove('hidden');
+            document.getElementById('orderSuccessView').classList.add('hidden');
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        function submitOrder(e) {
+            e.preventDefault();
+            const name = document.getElementById('custName').value.trim();
+            const region = document.getElementById('custRegion').value;
+            const payment = document.querySelector('input[name="paymentMethod"]:checked').value;
+            const { total } = getCartTotals();
+
+            const orderId = '#IST-' + Math.floor(10000 + Math.random() * 90000);
+            document.getElementById('receiptCustomerName').textContent = name;
+            document.getElementById('receiptOrderId').textContent = orderId;
+            document.getElementById('receiptRegion').textContent = region;
+            document.getElementById('receiptPayment').textContent = payment;
+            document.getElementById('receiptTotal').textContent = `${formatUsd(total)} (${formatUzs(total)})`;
+
+            // Clear cart after successful order
+            state.cart = [];
+            state.promoDiscountPercent = 0;
+            state.promoFixedUsd = 0;
+            saveState();
+            updateCartUI();
+
+            document.getElementById('checkoutFormView').classList.add('hidden');
+            document.getElementById('orderSuccessView').classList.remove('hidden');
+            showToast('Buyurtmangiz muvaffaqiyatli rasmiylashtirildi!');
+        }
+
+        // Installment Calculator Logic
+        function initCalculators() {
+            const phones = PRODUCTS.filter(p => p.category !== 'accessories');
+            const calcSelect = document.getElementById('calcModelSelect');
+            const comp1 = document.getElementById('compareSelect1');
+            const comp2 = document.getElementById('compareSelect2');
+
+            const optionsHtml = phones.map(p =>
+                `<option value="${p.id}">${p.name} — ${formatUsd(p.basePrice)}</option>`
+            ).join('');
+
+            calcSelect.innerHTML = optionsHtml;
+            comp1.innerHTML = phones.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+            comp2.innerHTML = phones.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+            comp2.value = "4"; // Default compare iPhone 16 Pro Max vs iPhone 16
+
+            updateInstallmentCalc();
+            updateTradeInCalc();
+            renderComparison();
+        }
+
+        function setInstallmentMonths(months) {
+            state.installmentMonths = months;
+            document.querySelectorAll('.month-btn').forEach(btn => {
+                if (parseInt(btn.dataset.months, 10) === months) {
+                    btn.className = 'month-btn active py-2.5 rounded-xl text-sm font-bold border border-apple-blue bg-apple-blue text-white transition';
+                } else {
+                    btn.className = 'month-btn py-2.5 rounded-xl text-sm font-bold border border-black/10 bg-apple-bg text-apple-charcoal transition';
+                }
+            });
+            updateInstallmentCalc();
+        }
+
+        function updateInstallmentCalc() {
+            const productId = parseInt(document.getElementById('calcModelSelect').value, 10);
+            const product = PRODUCTS.find(p => p.id === productId) || PRODUCTS[0];
+            const downPercent = parseInt(document.getElementById('downPaymentRange').value, 10);
+            const months = state.installmentMonths;
+
+            const price = product.basePrice;
+            const downUsd = Math.round(price * (downPercent / 100));
+            const remaining = price - downUsd;
+            // Realistic installment markup (~1.4% per month)
+            const markupFactor = 1 + (months * 0.014);
+            const monthlyUsd = Math.ceil((remaining * markupFactor) / months);
+
+            document.getElementById('downPaymentPercentLabel').textContent = downPercent + '%';
+            document.getElementById('downPaymentAmountLabel').textContent = `${formatUsd(downUsd)} (${formatUzs(downUsd)})`;
+            document.getElementById('monthlyUsdResult').textContent = `${formatUsd(monthlyUsd)} / oy`;
+            document.getElementById('monthlyUzsResult').textContent = `${formatUzs(monthlyUsd)} / oy`;
+        }
+
+        function orderInstallmentProduct() {
+            const productId = parseInt(document.getElementById('calcModelSelect').value, 10);
+            addToCart(productId);
+            toggleCartDrawer(true);
+        }
+
+        // Trade-In Estimator Logic
+        function setTradeInCondition(multiplier, btnEl) {
+            state.tradeInMultiplier = multiplier;
+            document.querySelectorAll('.cond-btn').forEach(btn => {
+                btn.className = 'cond-btn p-3 rounded-2xl border border-white/15 bg-white/5 text-left transition';
+            });
+            btnEl.className = 'cond-btn active p-3 rounded-2xl border border-amber-400 bg-amber-400/15 text-left transition';
+            updateTradeInCalc();
+        }
+
+        function updateTradeInCalc() {
+            const baseVal = parseInt(document.getElementById('tradeInModel').value, 10);
+            const estimatedUsd = Math.round(baseVal * state.tradeInMultiplier);
+            document.getElementById('tradeInUsdResult').textContent = formatUsd(estimatedUsd);
+            document.getElementById('tradeInUzsResult').textContent = `${formatUzs(estimatedUsd)} chegirma`;
+            return estimatedUsd;
+        }
+
+        function applyTradeInPromo() {
+            const val = updateTradeInCalc();
+            const code = 'TRADEIN' + val;
+            document.getElementById('promoCodeInput').value = code;
+            if (state.cart.length === 0) {
+                addToCart(1); // Add iPhone 16 Pro Max so user sees the discount immediately
+            }
+            applyPromoCode();
+            toggleCartDrawer(true);
+        }
+
+        // Model Comparison Logic
+        function renderComparison() {
+            const id1 = parseInt(document.getElementById('compareSelect1').value, 10);
+            const id2 = parseInt(document.getElementById('compareSelect2').value, 10);
+            const p1 = PRODUCTS.find(p => p.id === id1) || PRODUCTS[0];
+            const p2 = PRODUCTS.find(p => p.id === id2) || PRODUCTS[3];
+
+            const rows = [
+                { label: "Boshlang'ich narx", v1: `${formatUsd(p1.basePrice)} (${formatUzs(p1.basePrice)})`, v2: `${formatUsd(p2.basePrice)} (${formatUzs(p2.basePrice)})` },
+                { label: "Displey", v1: p1.specs.display, v2: p2.specs.display },
+                { label: "Protsessor", v1: p1.specs.chip, v2: p2.specs.chip },
+                { label: "Kamera tizimi", v1: p1.specs.camera, v2: p2.specs.camera },
+                { label: "Batareya", v1: p1.specs.battery, v2: p2.specs.battery },
+                { label: "Xotira variantlari", v1: p1.storages.map(s => s.size).join(', '), v2: p2.storages.map(s => s.size).join(', ') }
+            ];
+
+            document.getElementById('comparisonOutput').innerHTML = `
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="text-center p-4 rounded-2xl bg-apple-bg">
+                        <img src="${p1.image}" alt="${p1.name}" class="w-28 h-28 object-cover rounded-2xl mx-auto mb-3">
+                        <h4 class="font-extrabold text-base sm:text-lg text-apple-charcoal">${p1.name}</h4>
+                        <button onclick="addToCart(${p1.id})" class="mt-2 px-4 py-1.5 rounded-full bg-apple-blue text-white text-xs font-bold hover:bg-apple-blueHover transition">Savatga</button>
+                    </div>
+                    <div class="text-center p-4 rounded-2xl bg-apple-bg">
+                        <img src="${p2.image}" alt="${p2.name}" class="w-28 h-28 object-cover rounded-2xl mx-auto mb-3">
+                        <h4 class="font-extrabold text-base sm:text-lg text-apple-charcoal">${p2.name}</h4>
+                        <button onclick="addToCart(${p2.id})" class="mt-2 px-4 py-1.5 rounded-full bg-apple-blue text-white text-xs font-bold hover:bg-apple-blueHover transition">Savatga</button>
+                    </div>
+                </div>
+                <div class="divide-y divide-black/10 border-t border-b border-black/10">
+                    ${rows.map(r => `
+                        <div class="py-3.5">
+                            <div class="text-[11px] font-bold uppercase tracking-wider text-apple-gray text-center mb-1">${r.label}</div>
+                            <div class="grid grid-cols-2 gap-4 text-center text-xs sm:text-sm font-semibold text-apple-charcoal">
+                                <div>${r.v1}</div>
+                                <div>${r.v2}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Mobile Navigation Menu
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        // Boot Application
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            initCalculators();
+            updateBadges();
+            updateCartUI();
+        });
+    </script>
+</body>
+</html>
